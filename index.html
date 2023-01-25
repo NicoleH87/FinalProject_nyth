@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two-Layer Tic-Tac-Toe</title>
+    <link rel='stylesheet' href='style.css' />
+  </head>
+
+  <body>
+    <h1>
+      Two-Layer Tic-Tac-Toe
+    </h1>
+    <div id='selection'>
+      <form id='playerSign'>
+        <b>Make a selection to start playing.</b> <br />
+        <label>
+          <input type='radio' id='sign' name='sign' value='X' />
+          <img src='x_selection.png' />
+        </label>
+        <label>
+          <input type='radio' id='sign' name='sign' value='O' />
+          <img src='o_selection.png' />
+        </label>
+      </form>
+      <button id='selected'>Select</button>
+      <hr />
+      <div id='test'></div>
+      <div id='doneSelect'></div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div id='endResult'></div>
+    <div id='message'></div>
+    <br />
+    <div class='game-board'>
+      <div id='block_0' class='block'></div>
+      <div id='block_1' class='block'></div>
+      <div id='block_2' class='block'></div>
+      <div id='block_3' class='block'></div>
+      <div id='block_4' class='block'></div>
+      <div id='block_5' class='block'></div>
+      <div id='block_6' class='block'></div>
+      <div id='block_7' class='block'></div>
+      <div id='block_8' class='block'></div>
+    </div>
+    <br />
+    <br />
+    <button id='resetAll'>Reset</button>
+    <br />
+    <br />
+    <script src='script.js'></script>
+  </body>
+</html>
