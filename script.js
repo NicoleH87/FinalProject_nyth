@@ -214,8 +214,8 @@ let markGrid = (boxNum, mark) => {
 
 let selectDisplay = (boxNum, mark) => {
   if (mark === 'X') {
-    if (xLayer1[boxNum] === 'X') {
-      if (playboard[boxNum] === '') {
+    if (playboard[boxNum] === '') {
+      if (xLayer1[boxNum] === 'X') {
         return xMark;
       }
     } else {
@@ -226,8 +226,8 @@ let selectDisplay = (boxNum, mark) => {
       }
     }
   } else {
-    if (oLayer1[boxNum] === 'O') {
-      if (playboard[boxNum] === '') {
+    if (playboard[boxNum] === "") {
+      if (oLayer1[boxNum] === 'O') {
         return oMark;
       }
     } else {
