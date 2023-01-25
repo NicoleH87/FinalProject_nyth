@@ -37,7 +37,7 @@ let gameEndMessage = document.getElementById('endResult');
 let outMessage = document.getElementById('message');
 let selectMessage = document.getElementById('doneSelect');
 
-function playAudio1() {
+let playAudio1 = () => {
   let audio = document.getElementById('audioMessage1');
   audio.play();
 }
