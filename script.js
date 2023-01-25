@@ -36,6 +36,7 @@ let testOutput = document.getElementById('test');
 let gameEndMessage = document.getElementById('endResult');
 let outMessage = document.getElementById('message');
 let selectMessage = document.getElementById('doneSelect');
+let selectbtn = document.getElementById('selected');
 
 let playAudio1 = () => {
   let audio = document.getElementById('audioMessage1');
@@ -48,7 +49,8 @@ let playAudio2 = async () =>
   audioSec.play();
 }
 
-let selectbtn = document.getElementById('selected');
+selectbtn.addEventListener('click', setPlayer, true);
+selectbtn.addEventListener('click', playAudio1, true);
 
 let setPlayer = () => {
   if (
@@ -78,9 +80,6 @@ let setPlayer = () => {
     canChoose = false;
   }
 }
-
-selectbtn.addEventListener('click', setPlayer, true);
-selectbtn.addEventListener('click', playAudio1, true);
 
 let testdisplay = () => testOutput.innerHTML = 'Player: ' + player;
 
@@ -140,6 +139,7 @@ let turnProcess = input => {
     }
   }
   if (isFirstMove === true && computer === 'X') {
+    playerTurnEnd = true;
     computerTurn();
   }
   isFirstMove = (isFirstMove === true) ? false : true;
