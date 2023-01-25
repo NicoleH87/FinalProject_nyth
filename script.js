@@ -37,6 +37,17 @@ let gameEndMessage = document.getElementById('endResult');
 let outMessage = document.getElementById('message');
 let selectMessage = document.getElementById('doneSelect');
 
+function playAudio1() {
+  let audio = document.getElementById('audioMessage1');
+  audio.play();
+}
+
+let playAudio2 = async () =>
+{
+  let audioSec = document.getElementById('audioMessage2');
+  audioSec.play();
+}
+
 let selectbtn = document.getElementById('selected');
 
 let setPlayer = () => {
@@ -68,44 +79,54 @@ let setPlayer = () => {
   }
 }
 
-selectbtn.addEventListener('click', setPlayer, true)
+selectbtn.addEventListener('click', setPlayer, true);
+selectbtn.addEventListener('click', playAudio1, true);
 
 let testdisplay = () => testOutput.innerHTML = 'Player: ' + player;
 
 block0.addEventListener('click', () => {
   turnProcess(0);
+  playAudio2();
 });
 
 block1.addEventListener('click', () => {
   turnProcess(1);
+  playAudio2();
 });
 
 block2.addEventListener('click', () => {
   turnProcess(2);
+  playAudio2();
 });
 
 block3.addEventListener('click', () => {
   turnProcess(3);
+  playAudio2();
 });
 
 block4.addEventListener('click', () => {
   turnProcess(4);
+  playAudio2();
 });
 
 block5.addEventListener('click', () => {
   turnProcess(5);
+  playAudio2();
 });
 
 block6.addEventListener('click', () => {
   turnProcess(6);
+  playAudio2();
 });
 
 block7.addEventListener('click', () => {
   turnProcess(7);
+  playAudio2();
 });
 
 block8.addEventListener('click', () => {
   turnProcess(8);
+  playAudio2();
 });
 
 let turnProcess = input => {
@@ -142,20 +163,21 @@ let checkDisplay = (boxNum, mark) => {
   if (boxNum === lastMarkBox) {
     outMessage.innerHTML = (player === mark) ? 'Player turn! Computer selected this box in their last turn! Select another box.' : '';
     return false;
-  } else if (playboard[boxNum] === mark) {
+  }
+  if (playboard[boxNum] === mark) {
     outMessage.innerHTML = 'Player turn! You already locked the box. Select another box.';
     return false;
-  } else if (playboard[boxNum] === other) {
+  }
+  if (playboard[boxNum] === other) {
     outMessage.innerHTML = 'Player turn! The box was locked by computer. Select another box.';
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 let markBox = num => {
   let mark = (turn === player) ? player : computer;
-  if ((gameStart === true && isFirstMove) || (gameStart === true && checkDisplay(num, mark))) {
+  if ((isFirstMove) || (gameStart === true && (checkDisplay(num, mark)))) {
     if (num === 0) {
       block0.innerHTML = selectDisplay(num, mark);
       markGrid(num, mark);
@@ -193,49 +215,50 @@ let markBox = num => {
 }
 
 let markGrid = (boxNum, mark) => {
-  if (mark === 'X') {
-    if (xLayer1[boxNum] === '') {
-      xLayer1[boxNum] = mark;
-    } else {
-      playboard[boxNum] = mark;
-      oLayer1[boxNum] = '';
+  if (playboard[boxNum] === '') {
+    if (mark === 'X') {
+      if (xLayer1[boxNum] === '') {
+        xLayer1[boxNum] = mark;
+      } else {
+        playboard[boxNum] = mark;
+        oLayer1[boxNum] = '';
+      }
     }
-  }
-  if (mark === 'O') {
-    if (oLayer1[boxNum] === '') {
-      oLayer1[boxNum] = mark;
-    } else {
-      playboard[boxNum] = mark;
-      xLayer1[boxNum] = '';
+    if (mark === 'O') {
+      if (oLayer1[boxNum] === '') {
+        oLayer1[boxNum] = mark;
+      } else {
+        playboard[boxNum] = mark;
+        xLayer1[boxNum] = '';
+      }
     }
+    lastMarkBox = boxNum;
   }
-  lastMarkBox = boxNum;
 }
 
 let selectDisplay = (boxNum, mark) => {
-  if (mark === 'X') {
-    if (playboard[boxNum] === '') {
+  if (playboard[boxNum] === '') {
+    if (mark === 'X') {
       if (xLayer1[boxNum] === 'X') {
         return xMark;
-      }
-    } else {
-      if (oLayer1[boxNum] === 'O') {
+      } else if (oLayer1[boxNum] === 'O') {
         return obx;
       } else {
         return bbx;
       }
-    }
-  } else {
-    if (playboard[boxNum] === "") {
+    } else {
       if (oLayer1[boxNum] === 'O') {
         return oMark;
+      } else if (xLayer1[boxNum] === 'X') {
+          return obx;
+      } else {
+        return obb;
       }
-    } else {
-      if (xLayer1[boxNum] === 'X') {
-        return obx;
-      }
-      return obb;
     }
+  } else if (playboard[boxNum] === 'X') {
+    return xMark;
+  } else {
+    return oMark;
   }
 }
 

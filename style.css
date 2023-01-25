@@ -47,6 +47,7 @@ body {
   text-align: center;
 
   background-color: pink;
+  font-size: 150%;
 }
 
 button {
@@ -78,4 +79,8 @@ button {
 
 div {
   font-size: 150%;
+}
+
+video {
+  border-radius: 20px;
 }
