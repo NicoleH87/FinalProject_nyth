@@ -15,7 +15,7 @@ let playerTurnEnd;
 let gameStart = false;
 let canChoose = true;
 let boardfull = false;
-let isFirstMove = true;
+let isFirstMove;
 
 const playboard = ['', '', '', '', '', '', '', '', ''];
 const xLayer1 = ['', '', '', '', '', '', '', '', ''];
@@ -78,6 +78,7 @@ let setPlayer = () => {
     testdisplay();
     gameStart = true;
     canChoose = false;
+    isFirstMove = true;
   }
 }
 
@@ -139,10 +140,9 @@ let turnProcess = input => {
     }
   }
   if (isFirstMove === true && computer === 'X') {
-    playerTurnEnd = true;
     computerTurn();
   }
-  isFirstMove = (isFirstMove === true) ? false : true;
+  isFirstMove = false;
 }
 
 let computerTurn = async () => {
@@ -172,6 +172,7 @@ let checkDisplay = (boxNum, mark) => {
     outMessage.innerHTML = 'Player turn! The box was locked by computer. Select another box.';
     return false;
   }
+  playerTurnEnd = (mark === player) ? true : false;
   return true;
 }
 
@@ -206,8 +207,6 @@ let markBox = num => {
       block8.innerHTML = selectDisplay(num, mark);
       markGrid(num, mark);
     }
-
-    playerTurnEnd = (mark === player) ? true : false;
     if (gameStart === true) {
       checkforwinner();
     }
