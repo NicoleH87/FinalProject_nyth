@@ -49,9 +49,6 @@ let playAudio2 = async () =>
   audioSec.play();
 }
 
-selectbtn.addEventListener('click', setPlayer, true);
-selectbtn.addEventListener('click', playAudio1, true);
-
 let setPlayer = () => {
   if (
     (canChoose === false || gameStart === true) &&
@@ -81,6 +78,9 @@ let setPlayer = () => {
     isFirstMove = true;
   }
 }
+
+selectbtn.addEventListener('click', setPlayer, true);
+selectbtn.addEventListener('click', playAudio1, true);
 
 let testdisplay = () => testOutput.innerHTML = 'Player: ' + player;
 
@@ -172,7 +172,6 @@ let checkDisplay = (boxNum, mark) => {
     outMessage.innerHTML = 'Player turn! The box was locked by computer. Select another box.';
     return false;
   }
-  playerTurnEnd = (mark === player) ? true : false;
   return true;
 }
 
@@ -207,6 +206,7 @@ let markBox = num => {
       block8.innerHTML = selectDisplay(num, mark);
       markGrid(num, mark);
     }
+    playerTurnEnd = (mark === player) ? true : false;
     if (gameStart === true) {
       checkforwinner();
     }
